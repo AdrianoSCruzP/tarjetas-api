@@ -1,0 +1,261 @@
+{
+  "info": {
+    "_postman_id": "6b497dbc-0870-4f3c-85a1-e6ce893f8231",
+    "name": "TarjetasAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36348973"
+  },
+  "item": [
+    {
+      "name": "01 - Listar todas las tarjetas - 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Consultar tarjeta existente - 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas/4111000000000001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas",
+            "4111000000000001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Consultar tarjeta inexistente - 404",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas/4111000000000099",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas",
+            "4111000000000099"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "04 - Registrar tarjeta válida - 201",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"numero\": \"4111000000000006\",\r\n  \"titular\": \"Pedro Salas\",\r\n  \"tipo\": \"CREDITO\",\r\n  \"limite\": 2500.00\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "05 - Registrar crédito sin límite - 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"numero\": \"4111000000000007\",\r\n  \"titular\": \"Lucía Paz\",\r\n  \"tipo\": \"CREDITO\",\r\n  \"limite\": 0\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "06 - Registrar tipo inválido - 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"numero\": \"4111000000000008\",\r\n  \"titular\": \"Lucía Paz\",\r\n  \"tipo\": \"PREPAGO\",\r\n  \"limite\": 100\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "07 - Registrar número repetido - 409",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"numero\": \"4111000000000001\",\r\n  \"titular\": \"Otra Persona\",\r\n  \"tipo\": \"DEBITO\",\r\n  \"limite\": 0\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "08 - Bloquear tarjeta existente - 200",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas/4111000000000004/bloquear",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas",
+            "4111000000000004",
+            "bloquear"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "09 - Bloquear tarjeta inexistente - 404",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/tarjetas/4111000000000099/bloquear",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "tarjetas",
+            "4111000000000099",
+            "bloquear"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
